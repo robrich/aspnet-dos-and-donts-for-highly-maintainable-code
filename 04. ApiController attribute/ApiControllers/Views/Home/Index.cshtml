@@ -1,0 +1,94 @@
+﻿@{
+	ViewBag.Title = "ApiController action filter";
+}
+
+<div class="text-center">
+	<h1 class="display-4">@ViewBag.Title</h1>
+
+	<div id="app">
+		<div class="row">
+			Set request data: &nbsp;
+			<a href="#" class="btn btn-primary" @@click="missing">Missing</a>
+			<a href="#" class="btn btn-primary" @@click="setNull">Set Null</a>
+			<a href="#" class="btn btn-primary" @@click="short">Too Short</a>
+			<a href="#" class="btn btn-primary" @@click="valid">Valid</a>
+			<a href="#" class="btn btn-primary" @@click="tooLong">Too Long</a>
+		</div>
+		<div class="row">
+			<textarea class="form-control" v-model="request" placeholder="the data to post" rows="10"></textarea>
+		</div>
+		<div class="row">
+			<a href="#" class="btn btn-primary" @@click="run">Run</a>
+		</div>
+		<div class="row">
+			<textarea class="form-control" v-model="response" placeholder="the results" rows="10"></textarea>
+		</div>
+	</div>
+</div>
+
+@section scripts {
+	<script src="/lib/vue/vue.min.js"></script>
+	<script src="/lib/axios/axios.min.js"></script>
+	<script>
+
+		(function () {
+			/* global Vue:false */
+
+			var app = new Vue({
+				el: '#app',
+				data: {
+					request: `{
+}`,
+					response: ''
+				},
+				methods: {
+					missing: async function (e) {
+						e.preventDefault();
+						this.request = `{
+}`;
+					},
+					setNull: async function (e) {
+						e.preventDefault();
+						this.request = `{
+  "requiredString": null
+}`;
+					},
+					short: function (e) {
+						e.preventDefault();
+						this.request = `{
+  "requiredString": "a"
+}`;
+					},
+					valid: function (e) {
+						e.preventDefault();
+						this.request = `{
+  "requiredString": "a good string"
+}`;
+					},
+					tooLong: function (e) {
+						e.preventDefault();
+						this.request = `{
+  "requiredString": "this string is far too long"
+}`;
+					},
+					run: async function (e) {
+						e.preventDefault();
+
+						try {
+							const res = await axios.post('/api/acoolapi', JSON.parse(this.request));
+							this.response = JSON.stringify(res.data, null, 2);
+						} catch (err) {
+							if (err.response && err.response.data) {
+								this.response = JSON.stringify(err.response.data, null, 2);
+							} else {
+								this.response = `failed: ${err.message}`;
+							}
+						}
+					}
+				}
+			});
+
+		}());
+
+	</script>
+}

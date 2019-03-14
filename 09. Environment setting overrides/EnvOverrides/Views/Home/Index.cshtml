@@ -1,0 +1,15 @@
+﻿@model Settings
+
+@{
+	ViewBag.Title = "Environment-specific settings";
+}
+
+<div class="text-center">
+    <h1 class="display-4">@ViewBag.Title</h1>
+
+	<p>ConstantInAllEnvironments: @Model.ConstantInAllEnvironments</p>
+	<p>EnvironmentSpecific: @Model.EnvironmentSpecific</p>
+	<p>UserSpecific: @Model.UserSpecific</p>
+
+	<p><small>Set user-specific settings by right-clicking the project in Visual Studio, and choose User Secrets.</small></p>
+</div>

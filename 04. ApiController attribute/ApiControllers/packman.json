@@ -1,0 +1,18 @@
+{
+  "packages": {
+    "vue": {
+      "path": "wwwroot/lib/vue",
+      "version": "2.6.8",
+      "files": [
+        "vue.min.js"
+      ]
+    },
+    "axios": {
+      "path": "wwwroot/lib/axios",
+      "version": "0.18.0",
+      "files": [
+        "axios.min.js"
+      ]
+    }
+  }
+}

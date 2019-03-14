@@ -1,0 +1,26 @@
+﻿@{
+	ViewBag.Title = "Todos";
+}
+
+<div class="text-center">
+    <h1 class="display-4">@ViewBag.Title</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Task</th>
+				<th>Status</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var todo in Model) {
+				<tr>
+					<td>@todo.Id</td>
+					<td>@todo.Task</td>
+					<td>@todo.TaskStatus</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+</div>

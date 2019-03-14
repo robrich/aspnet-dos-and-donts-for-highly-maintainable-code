@@ -1,0 +1,91 @@
+﻿@{
+	ViewBag.Title = "Leaking data through APIs";
+}
+
+<div class="text-center">
+	<h1 class="display-4">@ViewBag.Title</h1>
+
+	<div id="app">
+		<div class="row">
+			<div class="form-check form-check-inline">
+				<input class="form-check-input" type="radio" id="badController" value="Bad" v-model="controller">
+				<label class="form-check-label" for="badController">BadController</label>
+			</div>
+			<div class="form-check form-check-inline">
+				<input class="form-check-input" type="radio" id="goodConroller" value="Good" v-model="controller">
+				<label class="form-check-label" for="goodConroller">GoodController</label>
+			</div>
+		</div>
+		<div class="row">
+			<a href="#" class="btn btn-primary" @@click="getById">Get by ID</a>
+			<a href="#" class="btn btn-primary" @@click="save">Save</a>
+			<a href="#" class="btn btn-primary" @@click="clear">Clear</a>
+			<span>{{message}}</span>
+		</div>
+		<div class="row">
+			<textarea class="form-control" v-model="data" placeholder="click Get by ID to load data from the API" rows="10"></textarea>
+		</div>
+	</div>
+</div>
+
+@section scripts {
+	<script src="/lib/vue/vue.min.js"></script>
+	<script src="/lib/axios/axios.min.js"></script>
+	<script>
+
+		(function () {
+			/* global Vue:false */
+
+			var app = new Vue({
+				el: '#app',
+				data: {
+					controller: 'Bad',
+					data: '',
+					message: ''
+				},
+				methods: {
+					getById: async function (e) {
+						e.preventDefault();
+
+						try {
+							const controller = this.controller;
+
+							const res = await axios.get(`/${controller}/7`);
+							this.data = JSON.stringify(res.data, null, 2);
+
+							this.message = 'loaded';
+
+						} catch (err) {
+							this.message = 'failed';
+							console.log(err);
+						}
+					},
+					save: async function (e) {
+						e.preventDefault();
+
+						try {
+							const controller = this.controller;
+							const json = JSON.parse(this.data);
+
+							const res = await axios.post(`/${controller}/7`, json);
+							this.data = JSON.stringify(res.data, null, 2);
+
+							this.message = 'saved';
+
+						} catch (err) {
+							this.message = 'failed';
+							console.log(err);
+						}
+					},
+					clear: function (e) {
+						e.preventDefault();
+						this.data = '';
+						this.message = '';
+					}
+				}
+			});
+
+		}());
+
+	</script>
+}
