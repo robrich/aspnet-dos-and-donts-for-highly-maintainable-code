@@ -62,7 +62,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04. ApiController attribute
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiControllers", "04. ApiController attribute\ApiControllers\ApiControllers.csproj", "{87D22064-3425-440B-858F-CAAAF3AF29A4}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "011. Swagger integration", "011. Swagger integration", "{15417898-E544-472A-B0F4-674071FA77E6}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "11. Swagger integration", "11. Swagger integration", "{15417898-E544-472A-B0F4-674071FA77E6}"
 	ProjectSection(SolutionItems) = preProject
 		11. Swagger integration\README.md = 11. Swagger integration\README.md
 	EndProjectSection
