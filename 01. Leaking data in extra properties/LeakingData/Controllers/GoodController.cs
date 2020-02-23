@@ -28,17 +28,17 @@ namespace LeakingData.Controllers
 				return NotFound();
 			}
 
-            #region left-right code
-            /*
-            UserProfileEditViewModel model = new UserProfileEditViewModel {
-                Id = user.Id,
-                FirstName = user.FirstName,
-                ...
-            }
-            */
-            #endregion
+			#region left-right code
+			/*
+			UserProfileEditViewModel model = new UserProfileEditViewModel {
+				Id = user.Id,
+				FirstName = user.FirstName,
+				...
+			}
+			*/
+			#endregion
 
-            UserProfileEditViewModel model = mapper.Map<UserProfileEditViewModel>(user);
+			UserProfileEditViewModel model = mapper.Map<UserProfileEditViewModel>(user);
 
 			return Ok(model);
 		}

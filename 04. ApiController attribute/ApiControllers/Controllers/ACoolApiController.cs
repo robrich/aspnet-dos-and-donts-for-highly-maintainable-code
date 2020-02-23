@@ -14,17 +14,17 @@ namespace GlobalActionFilters.Controllers
 		[HttpPost("")]
 		public ActionResult<ResponseViewModel> PostTheModel(RequestViewModel model)
 		{
-            // either is fine:
-            /*
-            return new ResponseViewModel {
-                Message = $"Success: {model.RequiredString}"
-            };
-            */
-            // *
+			// either is fine:
+			/*
+			return new ResponseViewModel {
+				Message = $"Success: {model.RequiredString}"
+			};
+			*/
+			// *
 			return Ok(new ResponseViewModel {
 				Message = $"Success: {model.RequiredString}"
 			});
-            //*/
+			//*/
 		}
 
 	}

@@ -24,9 +24,9 @@ namespace IntegrationTestDataTier.Data.Tests.Fixtures
 		private IConfiguration GetConfiguration() => new ConfigurationBuilder()
 			.AddJsonFile("appsettings.json", optional: true)
 			.AddJsonFile("appsettings.xunit.json", optional: true)
-            .AddUserSecrets<DatabaseFixture>(optional: true)
-            .AddEnvironmentVariables()
-            .Build();
+			.AddUserSecrets<DatabaseFixture>(optional: true)
+			.AddEnvironmentVariables()
+			.Build();
 
 		private void ConfigureServices(IServiceCollection service, IConfiguration configuration)
 		{
@@ -72,8 +72,8 @@ namespace IntegrationTestDataTier.Data.Tests.Fixtures
 			var options = this.GetService<DbContextOptions<TodoContext>>();
 			using (var db = new TodoContext(options)) {
 				// TODO: truncate and reseed the database
-                // or
-                // TODO: delete database
+				// or
+				// TODO: delete database
 			}
 		}
 

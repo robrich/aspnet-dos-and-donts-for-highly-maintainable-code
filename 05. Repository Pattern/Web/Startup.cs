@@ -30,9 +30,9 @@ namespace RepositoryPattern.Web
 				options.MinimumSameSitePolicy = SameSiteMode.None;
 			});
 
-            services.AddDbContext<TodoContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("TodoConnectionString"))
-                .ConfigureWarnings(warnings => warnings.Throw(RelationalEventId.QueryClientEvaluationWarning)));
+			services.AddDbContext<TodoContext>(options =>
+				options.UseSqlServer(Configuration.GetConnectionString("TodoConnectionString"))
+				.ConfigureWarnings(warnings => warnings.Throw(RelationalEventId.QueryClientEvaluationWarning)));
 
 			services.AddScoped<ITodoContext>(provider => (ITodoContext)provider.GetService(typeof(TodoContext)));
 			services.AddScoped<ITodoRepository, TodoRepository>();

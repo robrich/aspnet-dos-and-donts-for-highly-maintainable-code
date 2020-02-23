@@ -21,11 +21,11 @@ namespace MockTestDependencies.Services.Tests
 			AutoMocker mockRepo = new AutoMocker();
 			Mock<ICustomerRepository> customerRepository = setupCustomerRepository(mockRepo, returns: null);
 
-            // Act
-            // fragile:
-            ConfabulatorService service = new ConfabulatorService(customerRepository.Object, new Mock<IOrderRepository>().Object, new Mock<IOrderService>().Object);
-            // better:
-            //ConfabulatorService service = mockRepo.CreateInstance<ConfabulatorService>();
+			// Act
+			// fragile:
+			ConfabulatorService service = new ConfabulatorService(customerRepository.Object, new Mock<IOrderRepository>().Object, new Mock<IOrderService>().Object);
+			// better:
+			//ConfabulatorService service = mockRepo.CreateInstance<ConfabulatorService>();
 			decimal actual = service.CalculateConfabulationBalance(customerId);
 
 			// Assert
